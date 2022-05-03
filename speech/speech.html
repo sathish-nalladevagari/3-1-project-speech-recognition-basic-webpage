@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Voice Controlled Notes App</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shoelace-css/1.0.0-beta16/shoelace.css">
+    <link rel="stylesheet" href="/speech/speech.css">
+
+</head>
+
+
+<body>
+    <div class="container">
+
+        <h1>Speech recognition app</h1>
+        <div class="app">
+
+            <div class="input-single">
+                <textarea id="note-textarea" placeholder="Create a new note by typing or using voice recognition."
+                    rows="6"></textarea>
+            </div>
+            <div class="all_buttons">
+                <button id="start-record-btn" title="Start Recording">Start Recognition</button>
+                <button id="pause-record-btn" title="Pause Recording">Pause Recognition</button>
+                <button id="save-note-btn" title="Save Note">Save Note</button>
+                <p id="recording-instructions">Press the <strong>Start Recognition</strong> button and allow access.</p>
+            </div>
+
+            <h3>My Notes</h3>
+            <ul id="notes">
+                <li>
+                    <p class="no-notes">You don't have any notes.</p>
+                </li>
+            </ul>
+
+        </div>
+        Select Voice: <select id='voiceList'></select> <br><br>
+
+        
+    <button id='btnSpeak'>Speak!</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/speech/speech.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+    <script>
+        document.body.onkeyup = function(e){
+        if(e.keyCode == 32){
+            document.getElementById("pause-record-btn").click()
+    }
+}
+        if (annyang) {
+
+            var commands = {
+                'Go back': function () {
+                    window.open("/Home Page/home.html", "_self")
+
+                },
+                'start': function () {
+                    document.getElementById("start-record-btn").click()
+                    
+                },
+                'pause': function () {
+                    document.getElementById("pause-record-btn").click()
+                    
+                },
+                'save': function () {
+                    document.getElementById("save-note-btn").click()
+                    
+                },
+                'speak':function(){
+                    document.getElementById("btnSpeak").click()
+                }
+                
+
+
+
+            }
+
+
+
+
+
+
+            // Add our commands to annyang
+            annyang.addCommands(commands);
+
+            // Start listening. You can call this here, or attach this call to an event, button, etc.
+            annyang.start();
+
+        }
+        txtInput = document.querySelector('#note-textarea');
+        var varvoiceList = document.querySelector('#voiceList');
+        var btnSpeak = document.querySelector('#btnSpeak');
+        var synth = window.speechSynthesis;
+        var voices = [];
+
+        PopulateVoices();
+        if(speechSynthesis !== undefined){
+            speechSynthesis.onvoiceschanged = PopulateVoices;
+        }
+
+        btnSpeak.addEventListener('click', ()=> {
+            var toSpeak = new SpeechSynthesisUtterance(txtInput.value);
+            var selectedVoiceName = voiceList.selectedOptions[0].getAttribute('data-name');
+            voices.forEach((voice)=>{
+                if(voice.name === selectedVoiceName){
+                    toSpeak.voice = voice;
+                }
+            });
+            synth.speak(toSpeak);
+        });
+
+        function PopulateVoices(){
+            voices = synth.getVoices();
+            var selectedIndex = voiceList.selectedIndex < 0 ? 0 : voiceList.selectedIndex;
+            voiceList.innerHTML = '';
+            voices.forEach((voice)=>{
+                var listItem = document.createElement('option');
+                listItem.textContent = voice.name;
+                listItem.setAttribute('data-lang', voice.lang);
+                listItem.setAttribute('data-name', voice.name);
+                voiceList.appendChild(listItem);
+            });
+
+            voiceList.selectedIndex = selectedIndex;
+        }
+    </script>
+
+
+
+
+</body>
+
+</html>

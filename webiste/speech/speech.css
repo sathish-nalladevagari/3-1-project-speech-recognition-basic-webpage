@@ -1,0 +1,55 @@
+body{
+    background-color: #0e0d0d;
+    
+}
+
+#note-textarea{
+    width: 700px;
+    height: 550px;
+    position: relative;
+    top: 2cm;
+    left: 14cm;
+}
+
+h1{
+    font-family: sans-serif;
+    font-weight: 600;
+    color: aliceblue;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.all_buttons{
+    
+    width: max-content;
+    position: relative;
+    bottom:14cm;
+    left: 0cm;
+    
+}
+h3 ,#notes {
+    color: white;
+    position: relative;
+    bottom:14cm;
+    left: 0cm;
+}
+#recording-instructions{
+    color: white;
+}
+#voiceList{
+    width: 30rem;
+    position: absolute;
+    bottom: 90%;
+    left: 0rem;
+}
+#btnSpeak{
+    
+    position: absolute;
+    bottom: 80%;
+    left: 74%;
+    top: 8cm;
+}
+.app{
+    width: 100%;
+    height: 200px;
+}

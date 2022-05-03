@@ -1,0 +1,123 @@
+body {
+    background-color: black ;
+    color: white;
+    font-family: cursive;
+    
+}
+
+
+#transcript{
+    width: 8cm;
+    height: 50px;
+    background-color: black;
+    margin-top: 40px;
+    border: transparent;
+    color: aliceblue;
+    font-size: 3rem;
+    font-family: cursive;
+}
+.conatiner-word{
+    
+    position: relative;
+    top: 40vh;
+    left: 5cm;
+    width: 40vw;
+    
+
+}
+.container-images{
+    width: 40vw;
+    height: 50vh;
+    
+    float: right;
+    position: relative;
+    top: 20vh;
+    right: 30vh;
+    border-radius: 50%;
+    
+}
+.mic{
+    border-radius: 50%;
+    position: relative;
+    left: 8cm;
+    top: 4cm;
+    width: 100px;
+    cursor: pointer;
+    animation: size 3s ease-out;
+    
+}
+@keyframes size {
+    0%{
+        width: 2px;
+        
+    }
+    100%{
+        width: 100px;
+
+    }
+}
+.pad{
+    position: relative;
+    left: 6cm;
+    top: 1cm;
+    width: 40px;
+    cursor: pointer;
+    animation: rotate 3s linear  ;
+    
+
+}
+@keyframes rotate {
+    0%{
+        transform: rotate(0deg);
+        width: 5px;
+    }
+    100%{
+        transform: rotate(360deg);
+        width: 40px;
+    }
+    
+}
+.music{
+    position: relative;
+    left: 2.5cm;
+    top: 3cm;
+    width: 40px;
+    cursor: pointer;
+    animation: rotate 3s linear ;
+}
+.book{
+    position: relative;
+    left: 6cm;
+    top: 3cm;
+    width: 40px;
+    cursor: pointer;
+    animation: rotate 3s linear ;
+}
+.msg{
+    
+    position: relative;
+    left: 2.5cm;
+    top: 5.5cm;
+    width: 40px;
+    cursor: pointer;
+    animation: rotate 3s linear ;
+}
+span::before{
+    content: '';
+    font-size: 30px;
+    font-family: cursive;
+    animation: animate 6s infinite;
+}
+
+@keyframes animate {
+    0%{
+        content: 'Try Saying "Open Commands"';
+    }
+    50%{
+        content: 'Try Saying "Open Pad"';
+    }
+    100%{
+        content: 'Try Saying "Open Music"';
+    }
+
+}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="mail.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mail</title>
+</head>
+
+<body>
+    <div class="container">
+        <form action="javascript:sendmail()" method="post" class="myform">
+            <input type="email" placeholder="Email" name="email" id="email">
+            <br>
+            <input type="text" placeholder="Subject" name="subject" id="subject">
+            <br>
+            <textarea name="Message" required id="text" cols="30" rows="10"></textarea>
+            <br>
+            <button id="submit" type="submit" value="Submit">submit</button>
+        </form>
+    </div>
+</body>
+<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+<script>
+
+    if (annyang) {
+
+        var commands = {
+            'open music': function () {
+                window.open("/music/music.html", "_self")
+
+            },
+            'open pad': function () {
+                window.open("/speech/speech.html", "_self")
+
+            },
+            'open commands': function () {
+                window.open("/commands/commands.html", "_self")
+
+            },
+            'open mail': function () {
+                window.open("/mail/mail.html")
+            },
+            'go back': function () {
+                window.open("/Home Page/home.html","_self")
+
+            },
+            'write email*tag': function (variable1) {
+                text1 = document.getElementById("email");
+                text1.value = variable1.split(" ").join("");
+            },
+            'write Subject *tag': function (variable2) {
+                let text2 = document.getElementById("subject");
+                text2.value = variable2
+            },
+            'write message *tag': function (variable3) {
+                text3 = document.getElementById("text");
+                text3.value = variable3
+            },
+            'submit': function () {
+                document.getElementById("submit").click()
+            },
+
+
+
+
+
+        };
+
+        // Add our commands to annyang
+        annyang.addCommands(commands);
+
+        // Start listening. You can call this here, or attach this call to an event, button, etc.
+        annyang.start();
+    }
+
+
+    function sendmail(){
+    
+    
+    var email = $('#email').val();
+    var subject = $('#subject').val();
+var message = $('#text').val();
+
+    // var body = $('#body').val();
+
+    var Body='Name: '+name+'<br>Email: '+email+'<br>Subject: '+subject+'<br>Message: '+message;
+    //console.log(name, phone, email, message);
+
+    Email.send({
+        Host : "smtp.elasticemail.com",
+        Username : "sathish53870@gmail.com",
+        Password : "0C927F4C999E204B1464283940E5D7597D02",
+        To: 'ironman1433000@gmail.com',
+        From: "sathish53870@gmail.com",
+        Subject: "New message on contact from "+name,
+        Body: Body
+    }).then(
+        message =>{
+            //console.log (message);
+            if(message=='OK'){
+            alert('Your mail has been send. Thank you for connecting.');
+            }
+            else{
+                console.error (message);
+                alert('There is error at sending message. ')
+                
+            }
+
+        }
+    );
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</html>

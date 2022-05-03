@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/commands/commands.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commands</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="commands">
+            <div class="pad_commands">
+                <h1>NotePad voice Commands</h1>
+                <h3>Note:These commands on pad only work before starting Recognition,<br> while recognizing speech it does
+                    not work, Hit 'SpaceBar' to pause and then use voice command</h3>
+                <ul>
+                    <li>say 'openpad': To open notepad</li>
+                </ul>
+                <ul>
+                    <li>say 'Start': To Start Recognition</li>
+                </ul>
+                <ul>
+                    <li>Hit 'SpaceBar': To Pause Recognition :Does not have a voice command</li>
+                </ul>
+                <ul>
+                    <li>say 'save': To save Text </li>
+                </ul>
+                <ul>
+                    <li>say 'Speak': To listen audio of the text in the notepad</li>
+                </ul>
+                <ul>
+                    <li>say 'Go Back': To Go To Home Page</li>
+                </ul>
+
+            </div>
+            <div class="music_commands">
+                <h1 class="music">Music Commands</h1>
+                <ul>
+                    <li>say 'openmusic': To open Music Player</li>
+                </ul>
+                <ul>
+                    <li>say 'play': To play Music</li>
+                </ul>
+                <ul>
+                    <li>say 'stop': To stop Music</li>
+                </ul>
+                <ul>
+                    <li>say 'previous_song': To play previous_song</li>
+                </ul>
+                <ul>
+                    <li>say 'next_song': To play next_song</li>
+                </ul>
+                <ul>
+                    <li>say 'Go Back': To Go To Home Page</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+<script>
+    if (annyang) {
+
+        var commands = {
+            'open music': function () {
+                window.open("/music/music.html", "_self")
+
+            },
+            'open pad': function () {
+                window.open("/speech/speech.html", "_self")
+
+            },
+            'Go back': function () {
+                window.open("/Home Page/home.html", "_self")
+
+            },
+
+
+
+
+        };
+
+        // Add our commands to annyang
+        annyang.addCommands(commands);
+
+        // Start listening. You can call this here, or attach this call to an event, button, etc.
+        annyang.start();
+    }
+
+</script>
+
+</html>
